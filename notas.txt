@@ -1,0 +1,9 @@
+sb-minqo27779473@personal.example.com
+z<%Y4?lO
+
+syslog
+/var/log/syslog o nginx
+tail -f syslog
+
+
+yfzd sluj aklr glzi

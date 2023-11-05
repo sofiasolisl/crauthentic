@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costa Rica Authentic | Discover Costa Rica Like a Local</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d66c66b6e6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body class="bg-dark">
+    <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('index')}}">
+                <img src="./static/img/logo3.webp" height="50" class="d-inline-block align-center " alt="logo">
+                <p class="d-inline-block align-center ms-1">Costa Rica Authentic</p> 
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ms-5  " id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Tours</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Shuttles</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Testimonials</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Contact us</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-3">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#"><i class="fa-brands fa-facebook-f fa-xl" style="color: #58c6f2;"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fa-brands fa-instagram fa-xl" style="color: #58c6f2;"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fa-brands fa-whatsapp fa-xl" style="color: #58c6f2;"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link ms-4" href="#">English</i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Spanish</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container col-5 border border-3 rounded border-info mt-5 text-light">
+    <h1>Thank you {{customer}} your purchase!</h1>
+    <p>A confirmation email was send to you email address</p>
+    </div>
+</body>
+</html>

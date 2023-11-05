@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costa Rica Authentic | Discover Costa Rica Like a Local</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d66c66b6e6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="body_index">
+    <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('index')}}">
+                <img src="./static/img/logo3.webp" height="50" class="d-inline-block align-center " alt="logo">
+                <p class="d-inline-block align-center ms-1">Costa Rica Authentic</p> 
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ms-5  " id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Tours</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Shuttles</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Testimonials</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="#">Contact us</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-3">
+                    <li class="nav-item ">
+                        <a class="nav-link"aria-label="Chat on WhatsApp" href="https://wa.me/50684714708"> <img alt="Chat on WhatsApp" src="./static/img/WhatsAppButtonGreenSmall.svg" />
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#"><i class="fa-brands fa-facebook-f fa-xl" style="color: #58c6f2;"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fa-brands fa-instagram fa-xl" style="color: #58c6f2;"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fa-brands fa-whatsapp fa-xl" style="color: #58c6f2;"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link ms-4" href="#">English</i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Spanish</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="background_wrapper container-fluid bg-image">
+        <a href="https://wa.me/50685714708"><div class=" wa me-2">
+            <img src="./static/img/wa.png">
+        </div> </a>
+        <div class="d-flex justify-content-between pe-5 ">
+            <div class="col-8 d-flex align-items-end  ">
+                <p class="text-light attribute pb-4">Photo by <a href="https://www.pexels.com/photo/green-trees-near-blue-sea-13501101/" style="color:white">Costa Rica Drone Tours</a></p></div>
+            <div class="col-4 heading  d-flex flex-column text-center justify-content-center pe-5 mt-3">
+                <h1 class="text-light mb-4 "> <strong>Discover Costa Rica <br>  Like a Local !</strong></h1>
+                <p class="text-light mb-4"> Explore the hidden gems of Costa Rica through our authentic tours and shuttles, curated to immerse you in the local culture and breathtaking landscapes.</p>
+                <a class="btn btn-dark fs-5 " href="#shuttle" role="button">Book your experience</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container ps-5 ">
+        <ul class="nav nav-tabs ">
+            <li class="nav-item ">
+                <a class="nav-link " aria-current="page" href="#">Tours</a>
+            </li>
+            <li class="nav-item ms-2">
+                <a class="nav-link" href="#">Shuttles</a>
+            </li>
+        </ul>
+    
+        <div class="container border rounded border-info border-3" id="search">
+            <div id="tour">
+
+            </div>
+            <div id="shuttle">
+                <form action="{{url_for('shuttle')}}" method="post" class="text-light">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    {% with messages = get_flashed_messages() %}     
+                    {% if messages %}                            
+                        {% for message in messages %}
+                            <p class="bg-danger-subtle text-dark rounded m-1 col-4 text-center">{{message}}</p>                   
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    </div>
+                            <div class="container text-end mt-3 p-0">
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <label class="form-check-label " for="from">From:</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <select class="form-select  " name="from">
+                                            <option disabled selected hidden>Select a location</option>
+                                            {%for location in locations%}
+                                            <option value="{{location.id}}">{{location.location}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-check-label  " for="to">To:</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <select class="form-select " name="to">
+                                            <option disabled selected hidden>Select a location</option>
+                                            {%for location in locations%}
+                                            <option value="{{location.id}}">{{location.location}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <label class="form-check-label" for="passengers"> Passengers:</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input name="passengers" class="form-control" type="number" min="0">
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-check-label " for="date"> Date:</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input name="date" class="form-control " type="date">
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                            <button class="btn btn-info mt-3 mb-3 " type="submit">Search</button>
+                        </div>
+                        
+                </form>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container ps-5 mt-5 text-light mb-5 pb-5">
+            <h2 class="text-center fs-1">Our Top Tours</h2>
+            <p class="mt-3 mb-3">Escape the tourist traps and experience the real Costa Rica. Our local expertise ensures you'll see the country's most breathtaking, authentic, and secluded spots.</p>
+            <div id="carouselExample" class="carousel slide ">
+                <div class="carousel-inner  ">
+                    <div class="carousel-item active d-flex justify-content-between p-4">
+                        <div class="card bg-dark text-light" style="width: 20rem; height:28rem;" >
+                            <img src="./static/img/cocina.jpg" class="card-img-top" alt="stone stove">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Cooking on the "Fogón"</h5>
+                                <p class="card-text">Join us for a hands-on cooking session like no other, where you'll step back in time to experience the authentic heart of Costa Rican cuisine.</p>
+                                <a href="#" >View more</a>
+                            </div>
+                        </div>
+                        <div class="card bg-dark text-light " style="width: 20rem; height:28rem;" >
+                            <img src="./static/img/manglar.jpg" class="card-img-top" alt="stone stove">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Mangrove Marvels</h5>
+                                <p class="card-text">Discover the enchanting world of Costa Rica's mangroves with our Mangrove Marvels guided tour.</p>
+                                <a href="#" class="">View more</a>
+                            </div>
+                        </div>
+                        <div class="card bg-dark text-light" style="width: 20rem; height:28rem;" >
+                            <img src="./static/img/leche.webp" class="card-img-top" alt="stone stove">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Milk the cow!</h5>
+                                <p class="card-text">Get ready for a hands-on adventure that will connect you with the heart of the countryside as you learn the age-old art of milking a cow using traditional methods.</p>
+                                <a href="#" class="">View more</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container-fluid text-light bg-secondary mb-5 mt-5 p-5 text-center d-flex justify-content-center align-items-center">
+        <div class="me-5">
+            <h2 class="fs-1">Only need a ride?</h2>
+            <p>Your safety and comfort are our top priorities. Rest easy and enjoy the journey, <br> knowing you're in capable hands with Costa Rica Authentic. Book with confidence!</p>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info">Get quote</button>
+        </div>
+    </div>
+    <section class="container text-light p-5  ">
+        <div>
+            <h2 class="fs-1 text-center">Our customer reviews</h2>
+            <div class="d-flex justify-content-between align-items-center p-5">
+                <div style="width:14rem" >
+                    <p style="height:10rem align-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea mollitia, id harum voluptatibus saepe eum non quas maiores eius a</p>
+                    <div class="bg-body rounded-circle text-center" style="width:150px;height:150px"><img src="./static/img/user.webp" class="border-rounded" style="width:120px;"></div>
+                </div>
+                <div style="width:14rem" >
+                    <p style="height:10rem">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At rem vel minima exercitationem, perspiciatis deserunt ducimus cupiditate quae eius esse.</p>
+                    <div class="bg-body rounded-circle text-center" style="width:150px;height:150px"><img src="./static/img/user.webp" class="border-rounded" style="width:120px;"></div>
+                </div>
+                <div style="width:14rem" >
+                    <p style="height:10rem">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde sint quasi explicabo, pariatur obcaecati ipsam magnam. Quae, harum? Nostrum, rem!</p>
+                    <div class="bg-body rounded-circle text-center" style="width:150px;height:150px"><img src="./static/img/user.webp" class="border-rounded" style="width:120px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>
