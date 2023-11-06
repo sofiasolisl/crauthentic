@@ -1,6 +1,7 @@
 from crauthentic_app.config.mysqlconnection import connectToMySQL
 from crauthentic_app.models.location import Location
 from flask import flash
+import datetime
 
 class Route:
     def __init__(self, data):
@@ -72,7 +73,8 @@ class Route:
         if route['passengers'] == "" or int(route['passengers']) < 1:
             flash('Specify number of passengers')
             is_valid=False
-        if route['date'] == "":
-            flash('Specify date of shuttle')
+        date=datetime.date.fromisoformat(route['date'])
+        if route['date'] == "" or date<datetime.date.today():
+            flash('Specify a valid date')
             is_valid=False
         return is_valid

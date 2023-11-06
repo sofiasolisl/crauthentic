@@ -9,9 +9,6 @@ import requests
 from requests.auth import HTTPBasicAuth
 from . import send_email
 
-
-
-
 @app.route("/", methods = ['GET'])
 def index():
         locations=Location.getAll()
@@ -19,16 +16,17 @@ def index():
 
 @app.route('/shuttle', methods=['GET', 'POST'])
 def shuttle():
-    
     if request.method == "POST":
-        session.clear()
-        form=dict(request.form)
+        if session.get('shuttle')==None:
+            form=dict(request.form)
+        else:
+            form=session.get('shuttle')
         if Route.validations(request.form):
             data={
                 "from_location_id":form.get('from'),
                 "to_location_id":form.get('to'),
             }
-            
+            print(data)
             route=Route.getByLocationsId(data)
             print('ID:', route.id)
             shuttle=Price.getLastPriceForRouteById(route.id)
@@ -49,7 +47,6 @@ def shuttle():
 @app.route("/checkout", methods = ['GET','POST'])
 def checkout():
     if request.method == "POST":
-        session.clear()
         form=dict(request.form)
         if Customer.validations(request.form) and Order.validations(request.form):
             print('todo bien con validaciones')
@@ -60,7 +57,6 @@ def checkout():
             }
             route=Route.getByLocationsId(data).id
             session['prices_routes_id']=route
-            
             price=Price.getLastPriceForRouteById(route)
             session['prices_idprices']=price['id']
             if Customer.getEmail(form['email']) == None:
@@ -78,15 +74,17 @@ def checkout():
         else:
             locations=Location.getAll()
             data={
-                "from_location_id":form.get('from'),
-                "to_location_id":form.get('to'),
+                "from_location_id":session.get('from'),
+                "to_location_id":session.get('to')
             }
+            print("SESIOOOON:",session['shuttle'])
+            print("DATA:",data)
             route=Route.getByLocationsId(data)
             shuttle=Price.getLastPriceForRouteById(route.id)
             shuttle['passengers']=form.get('passengers')
             shuttle['date']=form.get('date')
             session['shuttle']=shuttle
-            return redirect("/shuttle")
+            return redirect("/shuttle",locations=locations, shuttle=shuttle)
     else:
         shuttle=session['shuttle']
         data={

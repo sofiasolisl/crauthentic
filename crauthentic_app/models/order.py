@@ -50,10 +50,10 @@ class Order:
     @staticmethod
     def validations(route):
         is_valid=True
-        if route['to'] == "":
+        if route.get('to') == "" or route.get('to') == None:
             flash('Destination location is required')
             is_valid=False
-        if route['from'] == "":
+        if route.get('from') == "" or route.get('from')== None:
             flash('Departure location is required')
             is_valid=False
         if route['passengers'] == "":

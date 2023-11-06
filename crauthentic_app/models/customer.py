@@ -2,7 +2,7 @@ from crauthentic_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
-
+BLANK_REGEX=re.compile(r'[\s]+$')
 
 
 class Customer:
@@ -65,14 +65,11 @@ class Customer:
     @staticmethod
     def validations(route):
         is_valid=True
-        if route['fname'] == "":
+        if route['fname'] == "" or   BLANK_REGEX.match(route['fname']) :
             flash('First Name is required')
             is_valid=False
-        if route['lname'] == "":
+        if route['lname'] == "" or  BLANK_REGEX.match(route['lname']):
             flash('Last Name is required')
-            is_valid=False
-        if route['email'] == "":
-            flash('Specify an email')
             is_valid=False
         if route['cellphone'] == "":
             flash('Specify a cellphone')
@@ -80,7 +77,7 @@ class Customer:
         if len(route['fname']) < 2 or len(route['lname']) < 2:
             flash ("First name and last name must be at least of 2 characters.")
             is_valid=False
-        if not EMAIL_REGEX.match(route['email']): 
-            flash("Invalid email address!")
+        if not EMAIL_REGEX.match(route['email']) or route['email'] == "": 
+            flash("Invalid email address")
             is_valid = False
         return is_valid
