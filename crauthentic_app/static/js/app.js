@@ -25,4 +25,10 @@ paypal.Buttons({
     }
 }).render('#paypal-button-container');
 
+
+
+
+
+
+
 //https://medium.com/@andrii.gorshunov/paypal-flask-integration-python-2022-1c012322801d
