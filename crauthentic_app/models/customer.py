@@ -3,7 +3,7 @@ from flask import flash
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 BLANK_REGEX=re.compile(r'[\s]+$')
-
+  
 
 class Customer:
     def __init__(self, data):

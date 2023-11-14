@@ -1,7 +1,7 @@
 from crauthentic_app.config.mysqlconnection import connectToMySQL
 from crauthentic_app.models.location import Location
 from flask import flash
-
+ 
 class Price:
     def __init__(self, data):
         self.id=data['id']

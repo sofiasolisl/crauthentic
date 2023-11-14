@@ -2,7 +2,7 @@ from crauthentic_app.config.mysqlconnection import connectToMySQL
 from crauthentic_app.models.location import Location
 from flask import flash
 import datetime
-
+ 
 class Route:
     def __init__(self, data):
         self.id=data['id']

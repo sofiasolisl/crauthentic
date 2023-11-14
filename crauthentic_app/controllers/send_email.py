@@ -2,7 +2,7 @@ from email.message import EmailMessage
 import ssl
 import smtplib
 from .  import account_password
-
+ 
 def send_email(reciever, details):
     email_sender='sofis64.developer@gmail.com'
     email_password=account_password.password

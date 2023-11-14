@@ -1,6 +1,6 @@
 from crauthentic_app.config.mysqlconnection import connectToMySQL
 from flask import flash
-
+ 
 class Order:
     def __init__(self, data):
         self.id=data['id']
